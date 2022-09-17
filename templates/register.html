@@ -1,0 +1,41 @@
+
+{% include 'navbar.html' %}
+
+<div class="signup"><section><h4> To register fill from given below </h4>
+<div class="center" style="align-items: center;">
+</div>
+    <style>
+h5{
+    color: red: 
+}
+.container-fluid{
+    margin-top: 100px;
+    margin-left: 300px;
+}
+ </style>
+
+ <div class="container-fluid">
+    {% csrf_token %}
+{% for message in messages %}
+
+<h5>{{message}}</h5>
+{% endfor %}
+
+<form method="POST" action="register">
+{%  csrf_token %}
+
+<p>Username: </p> 
+<input type="text" name="username"/>
+<p>Email: </p> 
+<input type="email" name="email" />
+<p>Password: </p> 
+<input type="password" name="password" />
+<p>Password2: </p> 
+<input type="password" name="password2" />
+<br/>
+<input type="submit" name="Submit" />
+
+</form>
+</div>
+</div>
+</section>

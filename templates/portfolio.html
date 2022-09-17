@@ -1,0 +1,252 @@
+{% include 'navbar.html' %}
+
+<style>
+
+</style>
+
+<!-- Breadcrumbs -->
+<section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center" id="top">
+
+      <ol>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="#Sec">Secretary Finance</a></li>
+        <li><a href="#ASec">Additional Secretary Finance</a></li>
+         <li><a href="#DS">Deputy Secretaries </a></li>
+         <li><a href="#GBIRC">GBIRC Team  </a></li>
+         <li><a href="#AOs">Accounts Officers  </a></li>
+         <li><a href="#SOs">Section officers</a></li>
+          <li><a href="#SOs">Other Officers/Officials</a></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+<!-- End Breadcrumbs -->
+ <!-- ==================================== Executive Section ============================= -->
+ 
+{% for sec in executives %}
+    <section id="about-video" class="about-video" style="background-color:rgb(226, 233, 235)">
+      <div class="container" id="Sec"data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-6 video-box align--self-center" data-aos="fade-right" data-aos-delay="100">
+            <img  src="{{ sec.image.url }}" class="img-fluid" alt="">
+            <a href="{{ sec.video_url }}" class="glightbox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+            <h3>{{sec.title}}</h3>
+            <p class="fst-italic">{{sec.top_paragraph}} </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> {{sec.point1}}</li>
+              
+            </ul>
+            <p> {{sec.summary}}  </p>
+            
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+      {% endfor %}
+      <!-- End Executive Section  -->
+
+    <!-- ======= Deputy Secretaries ======= -->
+    <section id="team" class="team section-bg" >
+      <div class="container-fluid"  id="DS" data-aos="fade-up">
+{% for headings in officer_a %}
+        <div class="section-title">
+          <h2>{{headings.title}}</h2>
+          <p>{{headings.shortparagraph}}</p>
+        </div>
+{% endfor %}
+
+
+        <div class="row">
+{% for officers in officer_b %}         
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+ 
+            <div class="member">
+  
+              <div class="member-img">
+            
+                <img src="{{officers.image.url}}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="{{officers.whatsapp}}"><i class="bi bi-whatsapp"></i></a>
+                  <a href="{{officers.facebook}}"><i class="bi bi-facebook"></i></a>
+                  <a href="tel:{{officers.phone}}"><i class="bi bi-phone"></i></a>
+
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>{{ officers.name_of_officer }}</h4>
+                <span>{{ officers.designation }}</span>
+                      
+                <p>
+                  {{officers.oficer_message}}
+                </p>
+              
+              </div>
+              
+            </div>
+            
+        </div>
+        {% endfor %}  
+  </div>
+  
+</div>
+    </section><!-- End Deputy Secretaries  -->
+
+<!-- ============================= GBIRC Team  =================================== -->
+    <!-- ======= Team Section ======= -->
+    <!-- ======= GBIRC ======= -->
+    <section id="team" class="team section-bg" style="background-color:lightgreen">
+      <div class="container-fluid"  id="GBIRC" data-aos="fade-up">
+{% for head in gbirca %}
+        <div class="section-title">
+          <h2>{{head.title}}</h2>
+          <p>{{head.shortparagraph}}</p>
+        </div>
+{% endfor %}
+
+
+        <div class="row">
+{% for prog in gbircab %}         
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+ 
+            <div class="member">
+  
+              <div class="member-img">
+            
+                <img src="{{prog.image.url}}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="{{prog.whatsapp}}"><i class="bi bi-whatsapp"></i></a>
+                  <a href="{{prog.facebook}}"><i class="bi bi-facebook"></i></a>
+                  <a href="tel:{{prog.phone}}"><i class="bi bi-phone"></i></a>
+
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>{{ prog.name_of_officer }}</h4>
+                <span>{{ prog.designation }}</span>
+                <p>
+                  {{prog.oficer_message}}
+                </p>
+              
+
+              </div>
+              
+            </div>
+            
+        </div>
+        {% endfor %}  
+  </div>
+  
+</div>
+    </section>
+    <!-- ======= GBIRC  end ======= -->
+<!-- ===================== Accounts Officer  Team ============================================ -->
+
+    <section id="team" class="team section-bg">
+      <div class="container-fluid" id="AOs" data-aos="fade-up">
+{% for head in accountsA %}
+        <div class="section-title">
+          <h2>{{head.title}}</h2>
+          <p>{{head.shortparagraph}}</p>
+        </div>
+{% endfor %}
+
+
+        <div class="row">
+{% for prog in accountsB %}         
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+ 
+            <div class="member">
+  
+              <div class="member-img">
+            
+                <img src="{{prog.image.url}}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="{{prog.whatsapp}}"><i class="bi bi-whatsapp"></i></a>
+                  <a href="{{prog.facebook}}"><i class="bi bi-facebook"></i></a>
+                  <a href="tel:{{prog.phone}}"><i class="bi bi-phone"></i></a>
+
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>{{ prog.name_of_officer }}</h4>
+                <span>{{ prog.designation }}</span>
+                      
+                <p>
+                  {{prog.oficer_message}}
+                </p>
+
+              </div>
+              
+            </div>
+            
+        </div>
+        {% endfor %}  
+  </div>
+  
+</div>
+    </section>
+<!-- ===================== Accounts Officer  Team ============================================ -->
+<!-- ===================== Section Officer  Team ============================================ -->
+<!-- ======= GBIRC ======= -->
+    <section id="team" class="team section-bg"  style="background-color:lightblue">
+      <div class="container-fluid" id="SOs" data-aos="fade-up">
+{% for head in sectiona %}
+        <div class="section-title">
+          <h2>{{head.title}}</h2>
+          <p>{{head.shortparagraph}}</p>
+        </div>
+{% endfor %}
+
+
+        <div class="row">
+{% for prog in sectionb %}         
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+ 
+            <div class="member">
+  
+              <div class="member-img">
+            
+                <img src="{{prog.image.url}}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="{{prog.whatsapp}}"><i class="bi bi-whatsapp"></i></a>
+                  <a href="{{prog.facebook}}"><i class="bi bi-facebook"></i></a>
+                  <a href="tel:{{prog.phone}}"><i class="bi bi-phone"></i></a>
+
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>{{ prog.name_of_officer }}</h4>
+                <span>{{ prog.designation }}</span>
+                      
+                <p>
+                  {{prog.oficer_message}}
+                </p>
+
+            
+
+              </div>
+              
+            </div>
+            
+        </div>
+        {% endfor %}  
+  </div>
+  
+</div>
+    </section>
+    <a href="#top">back to top </a>
+    
+
+<!-- ===================== Section Officer  Team ============================================ -->
+{% include 'footer.html' %}

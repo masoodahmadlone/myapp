@@ -1,0 +1,44 @@
+{% load static %}
+{% include 'navbar.html' %}
+
+<div class="container">
+<h1> Login Now </h1>
+</div>
+
+<style>
+h3{
+    color:red;
+}
+
+.container-fluid{
+    margin-top: 100px;
+    margin-left: 300px;
+
+}
+.signup{
+    padding-top: 25px;
+}
+</style> 
+<div class="container-fluid">{% for message in messages %}
+    {% csrf_token %}
+    
+<h3>{{message}}</h3>
+{% endfor %}
+
+<form action="login" method="POST">
+ {% csrf_token %}
+    <p>Username:</p>
+    <input type="text" name="username"/>
+    <p>Password:</p>
+    <input type="password" name="password"/> <br/>
+    <input type="submit"/>
+
+</form>    
+<div class="signup"><h4>To register click signup button please.  </h4></div>
+<div class="signupbtn">
+
+    <a class="btn btn-success" href="register">Signup</a>
+</div>
+
+</div>
+</div>

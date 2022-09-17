@@ -1,0 +1,211 @@
+{% load static %}
+{% include 'navbar.html' %}
+
+
+<!-- ======= Hero Section ======= -->
+   <style>
+    #flexbox1 {
+      display: flex;
+      flex-wrap:wrap;
+  }
+  #flexbox1 > div {
+      min-width: auto;
+      height: 400px;
+      margin: 20px;  
+  }
+  #flexbox1 > div:nth-child(1) {
+background-color:lightgrey;
+width: 30%;
+  }
+  #flexbox1 > div:nth-child(2) {
+min-width: 35%;
+  }
+#flexbox1 > div:nth-child(3) {
+background-color:grey;
+width: 15%;
+  }
+.news-alerts {
+    background: #2F4F4F;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #778899, #008e24);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1F1C18, #008e24); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #696969;
+    width: 100%;
+    max-width: 720px;
+    
+    height: 400px;
+    padding: 15px;
+    overflow: hidden;
+    background-color: #2F4F4F;  ;
+    border: 1px solid #ccc;
+    font-family: "Archivo", sans-serif;
+}
+
+.news-alerts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.news-alerts ul li {
+    padding: 20px 10px;
+}
+
+.news-alerts ul li a {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.news-alerts ul li a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: underline;
+}
+.section-title>p {
+  font-size: 25px;
+  color: black;
+}
+@media (max-width: 767px) {
+  /* Header */
+  #flexbox1 > div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  
+  }
+  #flexbox1 > div:nth-child(1) { /* Restaurant name */
+    width:100%;
+    height: 50%;
+
+  }
+  #flexbox1 > div:nth-child(2) { /* Kosher cert */
+    width:100%;
+    height: 50%;
+
+  }
+  #flexbox1 > div:nth-child(3) { /* Star-K */
+    width:100%;
+    height: 50%;
+
+  }
+}
+    </style>
+
+ <!-- ++++++++++++++++++++++++================ Breadcrumbs ======================================= -->
+
+ <section class="breadcrumbs" id="top">
+  {% csrf_token %}
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <ol>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="#adver">Advertisements & Legal Documents Published  </a></li>
+              </ol>
+    </div>
+  </div>
+</section>
+<!--  ++++++++++++++++++++++++++++++++++++++ End Breadcrumbs ++++++++++++++++++++++++-->
+
+<section>
+
+<!--  ++++++++++++++++++++++++++++++++++++++ begin Advertisement   ++++++++++++++++++++++++-->
+{% for adv in adver %}
+<div id="flexbox1">
+    <div><h1> <div class="section-title" id="adver">
+    <h2>{{adv.title}} </h2>
+    <p>
+      {{adv.detail}}
+    </p>
+    <a class="btn btn-primary" type="file"href="{{ adv.pdf_ver.url }}" action="view"method="view">View</a>
+    <a  class="btn btn-primary" type="file" href="{{ adv.pdf_ver.url }}" download="{{ adv.pdf_ver.url }}">Download</a>
+  </div>
+ </div>
+
+    <div><h1>     
+<div class="news-alerts holder">
+
+  <ul id="news-alerts" class="news-alert-list">
+    
+    <li>
+     
+    <a href="">{{adv.title}}:</a>
+    <a href="">{{adv.detail}} <strong>Uploaded on: {{adv.uploaded}}</strong></a>
+
+    <a  type="file"href="{{ adv.pdf_ver.url }}" action="view"method="view">View</a>
+    <a  type="file" href="{{ adv.pdf_ver.url }}" download="{{ adv.pdf_ver.url }}">Download</a>
+
+    </li>
+   
+
+  </ul>
+ 
+</div> </h1></div>
+    <div>  <img  style="height:100%" width="100%" src="{{adv.image.url}}"  alt=""> </div>
+</div>
+ {% endfor %}
+<!--  ++++++++++++++++++++++++++++++++++++++ end Advertisemtn  ++++++++++++++++++++++++-->
+
+</section> 
+<a href="#top"> back to top </a>
+
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500&display=swap" rel="stylesheet">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+jQuery.fn.liScroll = function (settings) {
+  settings = jQuery.extend(
+    {
+      travelocity: 0.03
+    },
+    settings
+  );
+  return this.each(function () {
+    var $strip = jQuery(this);
+    $strip.addClass("newsticker");
+    var stripHeight = 1;
+    $strip.find("li").each(function (i) {
+      stripHeight += jQuery(this, i).outerHeight(true); // thanks to Michael Haszprunar and Fabien Volpi
+    });
+    var $mask = $strip.wrap("<div class='mask'></div>");
+    var $tickercontainer = $strip
+      .parent()
+      .wrap("<div class='tickercontainer'></div>");
+    var containerHeight = $strip.parent().parent().height(); //a.k.a. 'mask' width
+    $strip.height(stripHeight);
+    var totalTravel = stripHeight;
+    var defTiming = totalTravel / settings.travelocity; // thanks to Scott Waye
+    function scrollnews(spazio, tempo) {
+      $strip.animate({ top: "-=" + spazio }, tempo, "linear", function () {
+        $strip.css("top", containerHeight);
+        scrollnews(totalTravel, defTiming);
+      });
+    }
+    scrollnews(totalTravel, defTiming);
+    $strip.hover(
+      function () {
+        jQuery(this).stop();
+      },
+      function () {
+        var offset = jQuery(this).offset();
+        var residualSpace = offset.top + stripHeight;
+        var residualTime = residualSpace / settings.travelocity;
+        scrollnews(residualSpace, residualTime);
+      }
+    );
+  });
+};
+
+$(function () {
+  $("ul#news-alerts").liScroll();
+});
+</script>
+              
+    		</div>
+		</div>
+    </div>
+</section>
+     
+
+   <!-- ANALYTICS -->
+
+	</body>
+
+{% include 'footer.html' %}

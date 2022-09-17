@@ -1,0 +1,45 @@
+.tickerv-wrap {
+    border-radius: 0%;
+    background: lightgrey;
+    box-sizing: content-box;
+    height: 400px;
+    overflow: hidden;
+    padding: 30px;
+    max-width: 600px;
+}
+
+@keyframes tickerv {
+    0% {
+        margin-top: 10px;
+    }
+    30% {
+        margin-top: -20%;
+    }
+    60% {
+        margin-top: -43%;
+    }
+    90% {
+        margin-top: -65%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+.tickerv-wrap ul {
+    color: darkblue;
+    padding: 20px;
+    margin: 20px;
+    animation: tickerv 6s infinite;
+    animation-timing-function: linear;
+}
+
+.tickerv-wrap ul:hover {
+    animation-play-state: paused;
+}
+
+.tickerv-wrap ul li {
+    margin-left: 5%;
+    font-size: 28px;
+    line-height: 30px;
+}
